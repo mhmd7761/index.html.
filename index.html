@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Security Alert</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      color: #262626;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      animation: backgroundColorChange 10s infinite;
+    }
+    .alert-box {
+      background: white;
+      border: 1px solid #dbdbdb;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .alert-box h2 {
+      color: #ed4956;
+    }
+    .alert-box p {
+      margin: 10px 0;
+    }
+    .countdown {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    .button {
+      background-color: #ed4956;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    @keyframes backgroundColorChange {
+      0% {background-color: #fafafa;}
+      50% {background-color: #ff4d4d;}
+      100% {background-color: #000000;}
+    }
+  </style>
+</head>
+<body>
+  <div class="alert-box">
+    <h2>تحذير أمني من Instagram</h2>
+    <p>تم تسجيل دخول غير معروف إلى حساب المستخدم <strong>m1.h221</strong></p>
+    <p>الموقع: روسيا - موسكو</p>
+    <p>إذا لم تكن أنت، سيتم قفل الحساب خلال:</p>
+    <div class="countdown" id="timer">10</div>
+    <p>يرجى التأكيد لتأمين حسابك.</p>
+    <button class="button" onclick="alert('تم استرجاع حسابك بنجاح!');">استرجاع الحساب</button>
+  </div>
+
+  <script>
+    let time = 10;
+    const timer = document.getElementById('timer');
+    const countdown = setInterval(() => {
+      time--;
+      timer.textContent = time;
+      if (time <= 0) {
+        clearInterval(countdown);
+        timer.textContent = "تم قفل الحساب";
+        alert('تم اختراق جهازك بالكامل. لا يمكن استرجاع الحساب.');
+      }
+    }, 1000);
+
+    // Add sound effect
+    const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+    audio.play();
+    setInterval(() => { audio.play(); }, 3000);
+
+    // Simulate page shake
+    let shakeInterval = setInterval(() => {
+      document.body.style.transform = 'translateX(-5px)';
+      setTimeout(() => {
+        document.body.style.transform = 'translateX(5px)';
+      }, 100);
+    }, 200);
+  </script>
+</body>
+</html>
